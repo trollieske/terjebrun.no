@@ -1,0 +1,11 @@
+{
+ "name": "terjebrun.no",
+ "version": "1.0.0",
+ "private": true,
+ "type": "module",
+ "description": "Nettside for Terje Brun-Pedersen — agent, arrangør og produsent",
+ "scripts": {
+  "build": "node scripts/build.mjs",
+  "serve": "python3 -m http.server 8000"
+ }
+}

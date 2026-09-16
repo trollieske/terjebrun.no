@@ -1,0 +1,120 @@
+[
+ {
+  "slug": "bokmesse-frankfurt",
+  "tittel": "Bokmessa i Frankfurt",
+  "sted": "Frankfurt, Tyskland",
+  "aar": "2016",
+  "rolle": "Produsent",
+  "bilde": "bokmesse",
+  "tekst": [
+   "«Handover ceremony» for Norge på bokmessa i Frankfurt, med Herborg Kråkevik, Mathias Eick og Kjetil Bjerkestrand.",
+   "Terje Brun-Pedersen var produsent for det kulturelle innslaget da Norge overtok som hovedland på verdens største bokmesse."
+  ]
+ },
+ {
+  "slug": "secret-garden",
+  "tittel": "Secret Garden",
+  "sted": "Hurum",
+  "aar": "2008",
+  "rolle": "Arrangør og produsent",
+  "bilde": "secret-garden",
+  "tekst": [
+   "World-turne-konsert med Secret Garden, arrangert og produsert i Hurum."
+  ]
+ },
+ {
+  "slug": "festforestilling-17-mai",
+  "tittel": "Festforestilling 17. mai",
+  "sted": "Drammen Teater",
+  "aar": "2013–2018",
+  "rolle": "Produsent og regissør",
+  "bilde": "festforestilling",
+  "tekst": [
+   "Drammen kommunes årlige festforestilling på nasjonaldagen. I årene 2013–2018 hadde Terje Brun-Pedersen ansvar for å arrangere, produsere og regissere forestillingen på oppdrag fra kommunen."
+  ]
+ },
+ {
+  "slug": "kulturens-festaften",
+  "tittel": "Kulturens festaften",
+  "sted": "Drammen Teater",
+  "aar": "2016",
+  "rolle": "Initiativtaker og prosjektleder",
+  "bilde": "festaften",
+  "tekst": [
+   "En festaften som samlet kulturlivet i Drammen på samme scene."
+  ]
+ },
+ {
+  "slug": "kirketurne",
+  "tittel": "«Sanger ved årets slutt»",
+  "sted": "Drammen, Vestfossen og Grimstad",
+  "aar": "2016",
+  "rolle": "Arrangør og produsent",
+  "bilde": "kirketurne",
+  "tekst": [
+   "Kirketurne med julemusikk i tre byer, arrangert og produsert av TBP Kultur."
+  ]
+ },
+ {
+  "slug": "akustisk-jul",
+  "tittel": "Akustisk jul med Eli Kristin Hanssveen",
+  "sted": "Bragernes kirke",
+  "aar": "2015",
+  "rolle": "Arrangør og produsent",
+  "bilde": "eli-kristin",
+  "tekst": [
+   "Julekonsert med Eli Kristin Hanssveen og Kjetil Bjerkestrand i Bragernes kirke."
+  ]
+ },
+ {
+  "slug": "honefoss-kirke",
+  "tittel": "Åpningen av Hønefoss kirke",
+  "sted": "Hønefoss",
+  "aar": "2017",
+  "rolle": "Produsent",
+  "bilde": "honefoss",
+  "tekst": [
+   "Åpningskonserten i den nye Hønefoss kirke med Kristin Bjerkerud, Carl Henrik Kværne Nilsen og elevkor fra Ringerike videregående skole."
+  ]
+ },
+ {
+  "slug": "vinterfestivalen",
+  "tittel": "Drammen Vinterfestival",
+  "sted": "Drammen",
+  "aar": "2000, 2001 og 2003",
+  "rolle": "Leder og produsent",
+  "bilde": "vinterfestivalen",
+  "tekst": [
+   "Terje Brun-Pedersen tok initiativet til og ledet Drammen Vinterfestival, som prosjektleder i Buskerud idrettskrets."
+  ]
+ },
+ {
+  "slug": "kurland-agency",
+  "tittel": "Kurland Agency i Norge",
+  "sted": "Norge",
+  "aar": "2023–",
+  "rolle": "Agent",
+  "bilde": "kurland",
+  "tekst": [
+   "Terje Brun-Pedersen er agent i det norske markedet for det amerikanske selskapet Kurland Agency. Han har forhandlet konserter i Norge med Bobby McFerrin, Gregory Porter og Pat Metheny.",
+   "Aktuelle navn fra Kurland Agency: Pat Metheny, Arturo Sandoval, Al Di Meola, Lizz Wright, Lisa Fischer, Kurt Elling, Ravi Coltrane, Dee Dee Bridgewater, Chris Botti og Béla Fleck."
+  ],
+  "lenker": [
+   {
+    "tekst": "thekurlandagency.com",
+    "url": "https://www.thekurlandagency.com/artists/"
+   }
+  ]
+ },
+ {
+  "slug": "sandvolleyballfestival",
+  "tittel": "Drammen Sandvolleyballfestival",
+  "sted": "Drammen",
+  "aar": "2010–2011, 2013",
+  "rolle": "Lokal leder og produsent",
+  "bilde": "sandvolley",
+  "tekst": [
+   "NM og Norgestour, buskerudmesterskap, studentturneringer, sandvolleyballskole, bedriftsturneringer og internasjonale turneringer."
+  ]
+ }
+]

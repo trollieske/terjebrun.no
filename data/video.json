@@ -1,0 +1,49 @@
+{
+ "kanal": "https://www.youtube.com/@terjebrun-pedersen9415",
+ "videoer": [
+  {
+   "id": "4CV-MNvmORU",
+   "tittel": "GRYTING – far og to sønner",
+   "dato": "2026-01-08",
+   "aar": 2026,
+   "forside": true
+  },
+  {
+   "id": "z8Ba1PvjkNU",
+   "tittel": "Kulturens festaften i Drammens teater",
+   "dato": "2016-12-12",
+   "aar": 2016,
+   "produksjon": true,
+   "forside": true
+  },
+  {
+   "id": "N-RyQVjLWyY",
+   "tittel": "Gryting, far og sønner",
+   "dato": "2021-05-14",
+   "aar": 2021,
+   "forside": true
+  },
+  {
+   "id": "J9QfMZqAChk",
+   "tittel": "Festforestilling 17. mai i Drammens teater",
+   "dato": "2016-03-23",
+   "aar": 2015,
+   "produksjon": true,
+   "forside": true
+  },
+  {
+   "id": "bEnLwQGQzgk",
+   "tittel": "Festforestilling 17. mai 2016",
+   "dato": "2016-07-04",
+   "aar": 2016,
+   "produksjon": true
+  },
+  {
+   "id": "_FLr8sMditM",
+   "tittel": "Tango for to – 17. mai-trening",
+   "dato": "2016-05-15",
+   "aar": 2016,
+   "produksjon": true
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44" role="img" aria-label="Terje Brun-Pedersen">
+  <title>Terje Brun-Pedersen</title>
+  <!-- forenklet merke for små størrelser: bare T-en -->
+  <rect width="44" height="44" rx="8" fill="#191712"/>
+  <rect x="9" y="11" width="26" height="6" rx="3" fill="#a4502a"/>
+  <rect x="19" y="11" width="6" height="22" rx="3" fill="#f7f4ef"/>
+</svg>
