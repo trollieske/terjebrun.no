@@ -32,6 +32,9 @@ const TELEFON_TEKST = '+47 926 04 030';
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+const MERKE_NAVN = 'TBP Music Management';
+const MERKE_UNDER = 'Terje Brun-Pedersen · Drammen';
+
 /* ---------------------------------------------------------------- deler */
 
 const IKON = {
@@ -53,8 +56,8 @@ function merke(p = '', storrelse = 30) {
           <rect x="21" y="45" width="22" height="5" rx="2.5" fill="var(--papir)"/>
         </svg>
         <span class="merke-tekst">
-          <span class="merke-navn">Terje Brun-Pedersen</span>
-          <span class="merke-rolle">Agent · Drammen</span>
+          <span class="merke-navn">${MERKE_NAVN}</span>
+          <span class="merke-rolle">${MERKE_UNDER}</span>
         </span>
       </a>`;
 }
@@ -104,7 +107,7 @@ function bunnavigasjon(aktiv, p = '') {
 function bunn(p = '') {
   return `<footer class="bunn">
   <div class="wrap bunn-inn">
-    <p>TBP Kultur · Terje Brun-Pedersen · Drammen</p>
+    <p>${MERKE_NAVN} · Terje Brun-Pedersen · Drammen</p>
     <p>Konsertfoto: Børre Erik Helgerud. Enkeltbilder: se kreditering på artistsidene.</p>
   </div>
 </footer>
@@ -153,17 +156,19 @@ ${bunn(p)}
 /* ------------------------------------------------------------- biter */
 
 function artistkort(a) {
-  return `      <li>
-        <a class="kort" href="artister/${a.slug}.html">
-          <span class="kort-bilde">
+  return `      <li class="stripe-kort">
+        <a href="artister/${a.slug}.html">
+          <span class="stripe-bilde">
             <img src="assets/artister/${a.bilde}-400.webp"
                  srcset="assets/artister/${a.bilde}-400.webp 400w, assets/artister/${a.bilde}-800.webp 800w"
-                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
-                 alt="${esc(a.navn)}" width="400" height="400" loading="lazy" decoding="async">
+                 sizes="min(34vw, 280px)"
+                 alt="${esc(a.navn)}" width="400" height="500" loading="lazy" decoding="async">
+            <span class="stripe-slor"></span>
+            <span class="stripe-tekst">
+              <span class="stripe-navn">${esc(a.navn)}</span>
+              <span class="stripe-rolle">${esc(a.rolle)}</span>
+            </span>
           </span>
-          <span class="kort-navn">${esc(a.navn)}</span>
-          <span class="kort-rolle">${esc(a.rolle)}</span>
-          ${a.merke ? `<span class="kort-merke">${esc(a.merke)}</span>` : ''}
         </a>
       </li>`;
 }
@@ -220,6 +225,10 @@ function produksjonsdel(p) {
 
 function artistmal(a, forrige, neste) {
   const p = '../';
+  // Første avsnitt i bioen brukes som ingress, resten står i brødteksten —
+  // da gjentar ikke kortversjonen seg når man kommer inn på siden.
+  const ingress = a.bio[0] || a.kort;
+  const resten = a.bio.slice(1);
   const innhold = `  <div class="wrap">
     <article class="artist">
       <div class="artist-foto">
@@ -232,10 +241,10 @@ function artistmal(a, forrige, neste) {
           <span class="artist-rolle">${esc(a.rolle)}</span>
           ${a.merke ? `<span class="artist-merke">${esc(a.merke)}</span>` : ''}
         </div>
-        <p class="lede artist-kort">${esc(a.kort)}</p>
+        <p class="lede artist-kort">${esc(ingress)}</p>
         ${a.sitat ? `<blockquote class="artist-sitat">${esc(a.sitat.tekst)}<cite>${esc(a.sitat.kilde)}</cite></blockquote>` : ''}
         <div class="artist-bio">
-          ${a.bio.map((p) => `<p>${esc(p)}</p>`).join('\n          ')}
+          ${resten.map((t) => `<p>${esc(t)}</p>`).join('\n          ')}
         </div>
         ${
           a.lenker?.length
@@ -269,7 +278,7 @@ function artistmal(a, forrige, neste) {
   });
 
   return layout({
-    tittel: `${a.navn} – booking | Terje Brun-Pedersen`,
+    tittel: `${a.navn} – booking | ${MERKE_NAVN}`,
     beskrivelse: a.kort,
     innhold,
     aktiv: 'artister',
@@ -295,6 +304,7 @@ forside = forside.replace(
   '<!-- ARTISTER_TELLING -->',
   `${artister.length} artister og ensembler`
 );
+forside = forside.replace('<!-- ARTISTER_ANTALL -->', String(artister.length).padStart(2, '0'));
 forside = forside.replace('<!-- VIDEOER -->', video.videoer.filter((v) => v.forside).map(videokort).join('\n'));
 forside = forside.replace(
   '<!-- PRODUKSJONER -->',
@@ -308,17 +318,17 @@ forside = forside.replace('<!-- YT_KANAL -->', video.kanal);
 skriv(
   'index.html',
   layout({
-    tittel: 'Terje Brun-Pedersen – agent for norske og internasjonale artister',
+    tittel: `${MERKE_NAVN} – agent for norske og internasjonale artister`,
     beskrivelse:
-      'Terje Brun-Pedersen formidler norske og internasjonale artister til kulturhus, festivaler, klubber og private arrangementer. Booking av jazz, klassisk, kor, rock og soul.',
+      'TBP Music Management ved Terje Brun-Pedersen formidler norske og internasjonale artister til kulturhus, festivaler, klubber og private arrangementer. Booking av jazz, klassisk, kor, rock og soul.',
     innhold: forside,
     aktiv: 'hjem',
     kanonisk: '/',
     struktur: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'MusicAgent',
-      name: 'Terje Brun-Pedersen',
-      alternateName: 'TBP Kultur',
+      name: MERKE_NAVN,
+      alternateName: 'Terje Brun-Pedersen',
       url: NETTSTED,
       email: EPOST,
       telephone: '+47 926 04 40 30',
@@ -336,9 +346,9 @@ prod = prod.replace('<!-- PRODUKSJONSVIDEOER -->', video.videoer.filter((v) => v
 skriv(
   'produksjoner.html',
   layout({
-    tittel: 'Utvalgte produksjoner – Terje Brun-Pedersen',
+    tittel: `Utvalgte produksjoner | ${MERKE_NAVN}`,
     beskrivelse:
-      'Festforestillinger, kirkekonserter, festivaler og internasjonale gjestespill – utvalgte produksjoner fra TBP Kultur i Drammen.',
+      'Festforestillinger, kirkekonserter, festivaler og internasjonale gjestespill – utvalgte produksjoner fra TBP Music Management i Drammen.',
     innhold: prod,
     aktiv: 'produksjoner',
     kanonisk: '/produksjoner.html',

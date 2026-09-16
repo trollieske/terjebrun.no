@@ -1,29 +1,36 @@
-  <section class="helt">
+<section class="helt">
     <img class="helt-bilde" src="assets/bilder/saxofon-nar-1600.webp" srcset="assets/bilder/saxofon-nar-900.webp 900w, assets/bilder/saxofon-nar-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
     <div class="wrap helt-inn">
       <p class="eyebrow">Agent · Arrangør · Produsent</p>
-      <h1>Først artisten. Så rommet.</h1>
-      <p class="helt-lede">Terje Brun-Pedersen formidler norske og internasjonale artister til kulturhus, festivaler, klubber og private arrangementer.</p>
-      <div class="helt-handling">
-        <a class="knapp knapp--lys" href="#artister">Se artistene</a>
-        <a class="knapp knapp--stille-lys" href="#kontakt">Ta kontakt</a>
-      </div>
+      <h1>Agent for norske og internasjonale artister</h1>
+      <p class="helt-lede">Terje Brun-Pedersen formidler konserter til kulturhus, festivaler, klubber og private arrangementer.</p>
     </div>
   </section>
 
-  <section class="seksjon" id="artister">
-    <div class="wrap">
-      <div class="seksjon-topp">
-        <div>
-          <p class="eyebrow">I stallen</p>
-          <h2 class="seksjon-tittel">Artister</h2>
-        </div>
-        <p class="seksjon-telling"><!-- ARTISTER_TELLING --></p>
+  <section class="stripe" id="artister">
+    <div class="wrap stripe-hode">
+      <div>
+        <p class="eyebrow">I stallen</p>
+        <h2 class="seksjon-tittel">Artister</h2>
       </div>
-      <ul class="rutenett">
+      <div class="stripe-verktoy">
+        <p class="seksjon-telling"><span data-teller>01</span> / <!-- ARTISTER_ANTALL --></p>
+        <div class="stripe-piler">
+          <button class="pil" type="button" data-retning="-1" aria-label="Vis forrige artister">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="pil" type="button" data-retning="1" aria-label="Vis flere artister">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="stripe-bane" tabindex="0" role="region" aria-label="Artister – bla sidelengs">
+      <ul class="stripe-spor">
 <!-- ARTISTER -->
       </ul>
     </div>
+    <p class="wrap stripe-hint"><!-- ARTISTER_TELLING --> · bla sidelengs</p>
   </section>
 
   <section class="seksjon" id="video">
@@ -67,7 +74,7 @@
         <p class="lede" style="margin-top:18px">De siste årene har en intens musikkinteresse og et langsomt bygget nettverk gjort det mulig å jobbe som agent for norske og internasjonale artister.</p>
         <p>Siden år 2000 har jeg drevet TBP Kultur med kulturproduksjon, festivalledelse, frilansjournalistikk, undervisning og sensorarbeid. I over tjue år jobbet jeg som lærer, med noen år som prosjektleder i Buskerud idrettskrets og som leder av Drammen Kulturforum.</p>
         <p>Det er et privilegium å ha forhandlet norske turneer for Pat Metheny, og konserter for Bobby McFerrin og Gregory Porter. I stallen står musikere, kor og band fra svært ulike sjangere — og jeg legger stor vekt på åpenhet, tillit og pålitelighet når jeg forhandler.</p>
-        <p class="om-rolle">Agent · Arrangør · Produsent · TBP Kultur</p>
+        <p class="om-rolle">Agent · Arrangør · Produsent · TBP Music Management</p>
         <div class="om-lenker">
           <a class="tekstlenke" href="https://no.linkedin.com/in/terje-brun-pedersen-6a041b61" target="_blank" rel="noopener">LinkedIn</a>
           <a class="tekstlenke" href="https://www.facebook.com/terje.brunpedersen" target="_blank" rel="noopener">Facebook</a>

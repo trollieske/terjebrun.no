@@ -1,9 +1,15 @@
 # terjebrun.no
 
-Nettside for **Terje Brun-Pedersen** — agent, arrangør og produsent i Drammen.
+Nettside for **TBP Music Management** — Terje Brun-Pedersen, agent, arrangør og
+produsent i Drammen.
 
 Ny utgave av den gamle Wix-siden: rask, enkel, og med artistene i fokus.
 Ren HTML/CSS/JS uten rammeverk og uten tredjeparter i det kritiske løpet.
+
+> **Designversjoner:** `design-v1` (tag og branch) er første versjon slik kunden
+> godkjente den — stor helt med «Først artisten. Så rommet.» og artistrutenett.
+> `main` har dagens versjon: lav helt, TBP-logo og artistkarusell.
+> Hent den gamle tilbake med `git checkout design-v1` (eller se på GitHub).
 
 ## Kom i gang
 
@@ -20,7 +26,7 @@ Det er ingen avhengigheter å installere. Node brukes bare til byggeskriptet.
 data/
   artister.json       alle artister: navn, rolle, bilder, bio, lenker
   produksjoner.json   utvalgte produksjoner med tekst og bilde
-  video.json          YouTube-videoer (id, tittel, år)
+  video.json          YouTube-videoer (id, tittel, år, hvor de vises)
 src/
   index.html          innholdet på forsiden (uten hode/bunn)
   produksjoner.html   innholdet på produksjonssiden
@@ -28,7 +34,7 @@ scripts/
   build.mjs           bygger alle sider
   sjekk-lenker.py     sjekker at ingen lokale lenker eller bilder er døde
 css/style.css         all styling
-js/site.js            YouTube-avspilling på klikk (ca. 20 linjer)
+js/site.js            karusell + YouTube-avspilling på klikk (ca. 90 linjer)
 assets/
   artister/           portretter i 400 og 800 px (webp)
   bilder/             scene- og produksjonsbilder i 900 og 1600 px (webp)
@@ -53,6 +59,16 @@ dev/merke.html        forslagsside for logoen (noindex, ikke del av siden)
 Nytt innhold i en eksisterende bio kan skrives rett inn i `bio`-lista.
 Rekkefølgen i fila er rekkefølgen på nettsiden.
 
+## Karusellen med artister
+
+Artistene ligger rett under toppen som en sidelengs karusell: 20 kort i 4:5
+med navn og rolle over bildet. Den kan brukes med piler, piltaster, musescroll,
+styrefelt og sveip, og telleren viser hvor langt man har kommet.
+
+Karusellen er ren CSS-pluss litt JavaScript (`js/site.js`). Uten JavaScript
+fungerer den fortsatt — da bare uten piler og teller. Vil man i stedet ha et
+rutenett på hele stallen, ligger den varianten i `design-v1`.
+
 ## Bilder
 
 Alle bilder er hentet fra den gamle nettsiden og er pressbilder fra artistene.
@@ -66,11 +82,15 @@ magick inn.jpg -auto-orient -resize '1600x1600^' -gravity north -extent 1:1 \
   -resize 800x800 -strip -quality 80 ut-800.webp
 ```
 
-## Logo
+## Logo og navn
 
-Forslaget ligger i `assets/logo/` og vises på `dev/merke.html` (åpne filen i
-nettleseren). Merket er geometrisk — scene, stativ og en tone — og fungerer
-ned til 16 px uten egen skrift. Det kan byttes ut uten at noe annet må endres.
+Navnet i låsningen er **TBP Music Management** (som på den gamle siden), med
+Terje Brun-Pedersen som undertittel. Det er bare tekst — skal han heller bruke
+«TBP Kultur», endrer vi `MERKE_NAVN` i `scripts/build.mjs`.
+
+Merket ligger i `assets/logo/` og vises på `dev/merke.html` (åpne filen i
+nettleseren). Det er geometrisk — scene, stativ og en tone — og fungerer ned
+til 16 px uten egen skrift.
 
 ## Ytelse og tilgjengelighet
 
