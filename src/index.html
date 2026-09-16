@@ -1,5 +1,7 @@
 <section class="helt">
-    <img class="helt-bilde" src="assets/bilder/saxofon-nar-1600.webp" srcset="assets/bilder/saxofon-nar-900.webp 900w, assets/bilder/saxofon-nar-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+    <img class="helt-bilde" src="assets/bilder/helt-poster-1600.webp" srcset="assets/bilder/helt-poster-900.webp 900w, assets/bilder/helt-poster-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+    <video class="helt-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+           data-webm="assets/video/helt-av1.webm" data-mp4="assets/video/helt.mp4"></video>
     <div class="wrap helt-inn">
       <p class="eyebrow">Agent · Arrangør · Produsent</p>
       <h1>Agent for norske og internasjonale artister</h1>
@@ -7,30 +9,26 @@
     </div>
   </section>
 
-  <section class="stripe" id="artister">
-    <div class="wrap stripe-hode">
-      <div>
-        <p class="eyebrow">I stallen</p>
-        <h2 class="seksjon-tittel">Artister</h2>
-      </div>
-      <div class="stripe-verktoy">
-        <p class="seksjon-telling"><span data-teller>01</span> / <!-- ARTISTER_ANTALL --></p>
-        <div class="stripe-piler">
-          <button class="pil" type="button" data-retning="-1" aria-label="Vis forrige artister">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="pil" type="button" data-retning="1" aria-label="Vis flere artister">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+  <div class="navnestripe">
+    <p class="skjul">Artister i stallen</p>
+    <ul class="navnestripe-spor">
+<!-- NAVNESTRIPE -->
+    </ul>
+  </div>
+
+  <section class="seksjon" id="artister">
+    <div class="wrap">
+      <div class="seksjon-topp">
+        <div>
+          <p class="eyebrow">I stallen</p>
+          <h2 class="seksjon-tittel">Artister</h2>
         </div>
+        <p class="seksjon-telling"><!-- ARTISTER_TELLING --></p>
       </div>
-    </div>
-    <div class="stripe-bane" tabindex="0" role="region" aria-label="Artister – bla sidelengs">
-      <ul class="stripe-spor">
+      <ul class="rutenett">
 <!-- ARTISTER -->
       </ul>
     </div>
-    <p class="wrap stripe-hint"><!-- ARTISTER_TELLING --> · bla sidelengs</p>
   </section>
 
   <section class="seksjon" id="video">

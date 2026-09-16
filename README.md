@@ -6,10 +6,11 @@ produsent i Drammen.
 Ny utgave av den gamle Wix-siden: rask, enkel, og med artistene i fokus.
 Ren HTML/CSS/JS uten rammeverk og uten tredjeparter i det kritiske løpet.
 
-> **Designversjoner:** `design-v1` (tag og branch) er første versjon slik kunden
-> godkjente den — stor helt med «Først artisten. Så rommet.» og artistrutenett.
-> `main` har dagens versjon: lav helt, TBP-logo og artistkarusell.
-> Hent den gamle tilbake med `git checkout design-v1` (eller se på GitHub).
+> **Designversjoner:** `design-v1` og `design-v2` ligger som tagger og brancher.
+> v1 = stor helt med «Først artisten. Så rommet.» og artistrutenett.
+> v2 = lav helt, TBP-logo, artistkarusell med bilder.
+> `main` = dagens: heltevideo, navnestripe som ruller, artistrutenett og
+> Apple-aktig typografi. Hent en eldre versjon med `git checkout design-v1`.
 
 ## Kom i gang
 
@@ -39,7 +40,8 @@ assets/
   artister/           portretter i 400 og 800 px (webp)
   bilder/             scene- og produksjonsbilder i 900 og 1600 px (webp)
   video/              miniatyrbilder til videoene (webp)
-  fonts/              Fraunces + Schibsted Grotesk (selvhostet, latin)
+  video/helt-av1.webm heltevideo (AV1, 737 kB) + helt.mp4 (H.264, 1,1 MB)
+  fonts/              Inter (selvhostet, latin, vanlig + kursiv)
   logo/               merket, favicon, apple-touch-icon
 dev/merke.html        forslagsside for logoen (noindex, ikke del av siden)
 ```
@@ -59,15 +61,53 @@ dev/merke.html        forslagsside for logoen (noindex, ikke del av siden)
 Nytt innhold i en eksisterende bio kan skrives rett inn i `bio`-lista.
 Rekkefølgen i fila er rekkefølgen på nettsiden.
 
-## Karusellen med artister
+## Skrift
 
-Artistene ligger rett under toppen som en sidelengs karusell: 20 kort i 4:5
-med navn og rolle over bildet. Den kan brukes med piler, piltaster, musescroll,
-styrefelt og sveip, og telleren viser hvor langt man har kommet.
+`-apple-system` først: på Mac og iPhone får besøkende Apples egen SF Pro, som er
+nøyaktig den looken vi er ute etter (den er en del av operativsystemet, ikke noe
+vi låner). Alle andre får **Inter**, den nærmeste frie slektningen — selvhostet
+i `assets/fonts/` (71 kB, variabel vekt 300–700, pluss kursiv som bare lastes på
+artistsidene der det finnes sitater). Ingen Google-kall.
 
-Karusellen er ren CSS-pluss litt JavaScript (`js/site.js`). Uten JavaScript
-fungerer den fortsatt — da bare uten piler og teller. Vil man i stedet ha et
-rutenett på hele stallen, ligger den varianten i `design-v1`.
+Vil man bytte skrift senere, holder det å endre `--skrift` og `@font-face` i
+`css/style.css`.
+
+## Heltevideoen
+
+Videoen bak overskriften er klippet av Terjes egen YouTube-video
+(«Gryting, far og sønner», N-RyQVjLWyY). Originalen blir liggende på YouTube —
+vi bruker bare et kort, lydløst utsnitt.
+
+- 12 sekunder, 1280×720, 25 fps, uten lyd, satt sammen i loop med en
+  ett sekunds overtoning til sitt eget opphav, så den går i ett uten hopp.
+- To formater: `helt-av1.webm` (737 kB) og `helt.mp4` som reserve for Safari
+  (1,1 MB). Nettleseren velger selv det minste den støtter.
+- `helt-poster-1600.webp` (66 kB) ligger under og er det første bildet på
+  skjermen. Videoen lastes først etter `load`, og hoppes helt over hvis
+  brukeren har «reduser bevegelse» eller datasparemodus på.
+
+Slik lages den på nytt (bytt tidskoden `-ss` for et annet utsnitt):
+
+```bash
+yt-dlp -f 136 -o kilde.mp4 "https://www.youtube.com/watch?v=N-RyQVjLWyY"
+# 13 sekunder inn, 12 ut, med ett sekunds overtoning til sitt eget opphav:
+ffmpeg -ss 94 -t 13 -i kilde.mp4 -filter_complex \
+ "[0:v]split[a][b];[a]trim=0:12,setpts=PTS-STARTPTS,fps=25[main];\
+  [b]trim=0:1,setpts=PTS-STARTPTS,fps=25[head];\
+  [main][head]xfade=transition=fade:duration=1:offset=11,format=yuv420p[v]" \
+ -map "[v]" -an -c:v libx264 -crf 16 -preset medium loop.mp4
+ffmpeg -i loop.mp4 -an -c:v libsvtav1 -crf 42 -preset 6 helt-av1.webm
+ffmpeg -i loop.mp4 -an -c:v libx264 -crf 30 -preset slow -movflags +faststart helt.mp4
+ffmpeg -i loop.mp4 -frames:v 1 -y poster.png
+```
+
+## Navnestripa
+
+Under helten ruller artistnavnene forbi av seg selv (ren CSS-animasjon på
+`transform`, som går på grafikkortet). Listen ligger to ganger i markupen, slik
+at den går i ett uten hopp; den andre kopien er `aria-hidden`. Den stopper når
+man holder musen over eller tabber inn i den, og står helt stille for dem som
+har «reduser bevegelse» på.
 
 ## Bilder
 

@@ -1,12 +1,14 @@
 /* terjebrun.no — lite og avhengighetsfritt.
-   1) Videoene lastes som bilde, og YouTube-spilleren kobles inn først når man
-      klikker. Uten JavaScript går klikket til YouTube i stedet.
-   2) Artistkarusellen får piler, teller og tastaturnavigasjon. Selve
-      sidelengs-scrollingen virker også uten JavaScript. */
+
+   1) Videoene i videoseksjonen lastes som bilde. YouTube-spilleren kobles inn
+      først når man klikker — uten JavaScript går klikket til YouTube.
+   2) Heltevideoen lastes etter at siden ellers er ferdig, og bare når
+      nettverket og brukerens innstillinger tåler det. Posterbildet ligger
+      under, så første bilde på skjermen er alltid der med en gang. */
 (function () {
   'use strict';
 
-  /* --- video på klikk ------------------------------------------------- */
+  /* --- video i videoseksjonen ----------------------------------------- */
   document.addEventListener('click', function (e) {
     var lenke = e.target.closest ? e.target.closest('a.video[data-video]') : null;
     if (!lenke) return;
@@ -22,67 +24,51 @@
     lenke.replaceWith(iframe);
   });
 
-  /* --- artistkarusell ------------------------------------------------- */
-  var bane = document.querySelector('.stripe-bane');
-  if (!bane) return;
+  /* --- heltevideo ------------------------------------------------------ */
+  var heltevideo = document.querySelector('.helt-video');
+  if (!heltevideo) return;
 
-  var spor = bane.querySelector('.stripe-spor');
-  var kort = spor ? Array.prototype.slice.call(spor.children) : [];
-  var teller = document.querySelector('[data-teller]');
-  var piler = Array.prototype.slice.call(document.querySelectorAll('.pil'));
-  if (!kort.length) return;
+  var roligeInnstillinger = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nett = navigator.connection || {};
+  var sparerData = nett.saveData === true || /^(slow-2g|2g|3g)$/.test(nett.effectiveType || '');
 
-  function steg() {
-    var b = kort[0].getBoundingClientRect().width;
-    var gap = parseFloat(getComputedStyle(spor).columnGap || '12') || 12;
-    return b + gap;
+  if (roligeInnstillinger || sparerData) {
+    heltevideo.remove();
+    return;
   }
 
-  function oppdater() {
-    var x = bane.scrollLeft;
-    var venstre = bane.getBoundingClientRect().left;
-    var indeks = 0;
-
-    kort.forEach(function (k, i) {
-      var pos = k.getBoundingClientRect().left - venstre + x;
-      if (pos <= x + 8) indeks = i;
+  function startVideo() {
+    var webm = document.createElement('source');
+    webm.src = heltevideo.dataset.webm;
+    webm.type = 'video/webm';
+    var mp4 = document.createElement('source');
+    mp4.src = heltevideo.dataset.mp4;
+    mp4.type = 'video/mp4';
+    heltevideo.appendChild(mp4); // mp4 først i DOM, webm velges hvis den støttes
+    heltevideo.insertBefore(webm, mp4);
+    heltevideo.addEventListener('playing', function () {
+      heltevideo.classList.add('spiller');
     });
-
-    if (teller) teller.textContent = String(indeks + 1).padStart(2, '0');
-
-    var maks = bane.scrollWidth - bane.clientWidth - 2;
-    piler.forEach(function (p) {
-      var retning = Number(p.dataset.retning);
-      p.disabled = retning < 0 ? x <= 2 : x >= maks;
-    });
-  }
-
-  var planlagt = false;
-  bane.addEventListener(
-    'scroll',
-    function () {
-      if (planlagt) return;
-      planlagt = true;
-      requestAnimationFrame(function () {
-        planlagt = false;
-        oppdater();
+    var spill = heltevideo.play();
+    if (spill && spill.catch) {
+      spill.catch(function () {
+        heltevideo.remove(); // nettleseren ville ikke — posterbildet står igjen
       });
-    },
-    { passive: true }
-  );
-
-  piler.forEach(function (p) {
-    p.addEventListener('click', function () {
-      bane.scrollBy({ left: Number(p.dataset.retning) * steg() * 2, behavior: 'smooth' });
+    }
+    // Ikke bruk batteri på en fane ingen ser på
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        heltevideo.pause();
+      } else {
+        var igjen = heltevideo.play();
+        if (igjen && igjen.catch) igjen.catch(function () {});
+      }
     });
-  });
+  }
 
-  bane.addEventListener('keydown', function (e) {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    e.preventDefault();
-    bane.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * steg(), behavior: 'smooth' });
-  });
-
-  window.addEventListener('resize', oppdater);
-  oppdater();
+  if (document.readyState === 'complete') {
+    startVideo();
+  } else {
+    window.addEventListener('load', startVideo);
+  }
 })();

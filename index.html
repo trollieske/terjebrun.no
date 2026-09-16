@@ -10,8 +10,7 @@
 <meta name="theme-color" content="#f7f4ef">
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
-<link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/schibsted-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Terje Brun-Pedersen">
@@ -50,7 +49,9 @@
 </header>
 <main id="innhold">
 <section class="helt">
-    <img class="helt-bilde" src="assets/bilder/saxofon-nar-1600.webp" srcset="assets/bilder/saxofon-nar-900.webp 900w, assets/bilder/saxofon-nar-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+    <img class="helt-bilde" src="assets/bilder/helt-poster-1600.webp" srcset="assets/bilder/helt-poster-900.webp 900w, assets/bilder/helt-poster-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+    <video class="helt-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+           data-webm="assets/video/helt-av1.webm" data-mp4="assets/video/helt.mp4"></video>
     <div class="wrap helt-inn">
       <p class="eyebrow">Agent · Arrangør · Produsent</p>
       <h1>Agent for norske og internasjonale artister</h1>
@@ -58,329 +59,324 @@
     </div>
   </section>
 
-  <section class="stripe" id="artister">
-    <div class="wrap stripe-hode">
-      <div>
-        <p class="eyebrow">I stallen</p>
-        <h2 class="seksjon-tittel">Artister</h2>
-      </div>
-      <div class="stripe-verktoy">
-        <p class="seksjon-telling"><span data-teller>01</span> / 20</p>
-        <div class="stripe-piler">
-          <button class="pil" type="button" data-retning="-1" aria-label="Vis forrige artister">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="pil" type="button" data-retning="1" aria-label="Vis flere artister">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+  <div class="navnestripe">
+    <p class="skjul">Artister i stallen</p>
+    <ul class="navnestripe-spor">
+        <li><a href="artister/kari-kirkland.html">Kari Kirkland</a></li>
+        <li><a href="artister/marius-neset.html">Marius Neset &amp; Bergen Big Band</a></li>
+        <li><a href="artister/pat-metheny.html">Pat Metheny</a></li>
+        <li><a href="artister/bendik-hofseth.html">Bendik Hofseth</a></li>
+        <li><a href="artister/karl-espegard.html">Karl Espegard</a></li>
+        <li><a href="artister/sevag-patey.html">Øystein Sevåg &amp; Lakki Patey</a></li>
+        <li><a href="artister/ivan-mazuze.html">Ivan Mazuze</a></li>
+        <li><a href="artister/hans-mathisen.html">Hans Mathisen</a></li>
+        <li><a href="artister/iberg-saabye.html">Helge Iberg &amp; Lars Saabye Christensen</a></li>
+        <li><a href="artister/katie-mahan.html">Katie Mahan</a></li>
+        <li><a href="artister/per-mathisen.html">Per Mathisen</a></li>
+        <li><a href="artister/bjerkestrand-eick.html">Kjetil Bjerkestrand &amp; Mathias Eick</a></li>
+        <li><a href="artister/olga-konkova.html">Olga Konkova</a></li>
+        <li><a href="artister/det-norske-damekor.html">Det Norske Damekor</a></li>
+        <li><a href="artister/gryting.html">Gryting, far og to sønner</a></li>
+        <li><a href="artister/toner-av-u2.html">Toner av U2</a></li>
+        <li><a href="artister/hedvig-mollestad.html">Hedvig Mollestad</a></li>
+        <li><a href="artister/knut-anders-sorum.html">Knut Anders Sørum</a></li>
+        <li><a href="artister/anastasiya-bazhenova.html">Anastasiya Bazhenova</a></li>
+        <li><a href="artister/emma-smith.html">Emma Smith</a></li>
+        <li><a href="artister/kari-kirkland.html" tabindex="-1" aria-hidden="true">Kari Kirkland</a></li>
+        <li><a href="artister/marius-neset.html" tabindex="-1" aria-hidden="true">Marius Neset &amp; Bergen Big Band</a></li>
+        <li><a href="artister/pat-metheny.html" tabindex="-1" aria-hidden="true">Pat Metheny</a></li>
+        <li><a href="artister/bendik-hofseth.html" tabindex="-1" aria-hidden="true">Bendik Hofseth</a></li>
+        <li><a href="artister/karl-espegard.html" tabindex="-1" aria-hidden="true">Karl Espegard</a></li>
+        <li><a href="artister/sevag-patey.html" tabindex="-1" aria-hidden="true">Øystein Sevåg &amp; Lakki Patey</a></li>
+        <li><a href="artister/ivan-mazuze.html" tabindex="-1" aria-hidden="true">Ivan Mazuze</a></li>
+        <li><a href="artister/hans-mathisen.html" tabindex="-1" aria-hidden="true">Hans Mathisen</a></li>
+        <li><a href="artister/iberg-saabye.html" tabindex="-1" aria-hidden="true">Helge Iberg &amp; Lars Saabye Christensen</a></li>
+        <li><a href="artister/katie-mahan.html" tabindex="-1" aria-hidden="true">Katie Mahan</a></li>
+        <li><a href="artister/per-mathisen.html" tabindex="-1" aria-hidden="true">Per Mathisen</a></li>
+        <li><a href="artister/bjerkestrand-eick.html" tabindex="-1" aria-hidden="true">Kjetil Bjerkestrand &amp; Mathias Eick</a></li>
+        <li><a href="artister/olga-konkova.html" tabindex="-1" aria-hidden="true">Olga Konkova</a></li>
+        <li><a href="artister/det-norske-damekor.html" tabindex="-1" aria-hidden="true">Det Norske Damekor</a></li>
+        <li><a href="artister/gryting.html" tabindex="-1" aria-hidden="true">Gryting, far og to sønner</a></li>
+        <li><a href="artister/toner-av-u2.html" tabindex="-1" aria-hidden="true">Toner av U2</a></li>
+        <li><a href="artister/hedvig-mollestad.html" tabindex="-1" aria-hidden="true">Hedvig Mollestad</a></li>
+        <li><a href="artister/knut-anders-sorum.html" tabindex="-1" aria-hidden="true">Knut Anders Sørum</a></li>
+        <li><a href="artister/anastasiya-bazhenova.html" tabindex="-1" aria-hidden="true">Anastasiya Bazhenova</a></li>
+        <li><a href="artister/emma-smith.html" tabindex="-1" aria-hidden="true">Emma Smith</a></li>
+    </ul>
+  </div>
+
+  <section class="seksjon" id="artister">
+    <div class="wrap">
+      <div class="seksjon-topp">
+        <div>
+          <p class="eyebrow">I stallen</p>
+          <h2 class="seksjon-tittel">Artister</h2>
         </div>
+        <p class="seksjon-telling">20 artister og ensembler</p>
       </div>
-    </div>
-    <div class="stripe-bane" tabindex="0" role="region" aria-label="Artister – bla sidelengs">
-      <ul class="stripe-spor">
-      <li class="stripe-kort">
-        <a href="artister/kari-kirkland.html">
-          <span class="stripe-bilde">
+      <ul class="rutenett">
+      <li>
+        <a class="kort" href="artister/kari-kirkland.html">
+          <span class="kort-bilde">
             <img src="assets/artister/kari-kirkland-400.webp"
                  srcset="assets/artister/kari-kirkland-400.webp 400w, assets/artister/kari-kirkland-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Kari Kirkland" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Kari Kirkland</span>
-              <span class="stripe-rolle">Vokal · jazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Kari Kirkland" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Kari Kirkland</span>
+          <span class="kort-rolle">Vokal · jazz</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/marius-neset.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/marius-neset.html">
+          <span class="kort-bilde">
             <img src="assets/artister/marius-neset-400.webp"
                  srcset="assets/artister/marius-neset-400.webp 400w, assets/artister/marius-neset-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Marius Neset &amp; Bergen Big Band" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Marius Neset &amp; Bergen Big Band</span>
-              <span class="stripe-rolle">Saksofon · storband</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Marius Neset &amp; Bergen Big Band" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Marius Neset &amp; Bergen Big Band</span>
+          <span class="kort-rolle">Saksofon · storband</span>
+          <span class="kort-merke">I stallen fra 2025</span>
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/pat-metheny.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/pat-metheny.html">
+          <span class="kort-bilde">
             <img src="assets/artister/pat-metheny-400.webp"
                  srcset="assets/artister/pat-metheny-400.webp 400w, assets/artister/pat-metheny-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Pat Metheny" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Pat Metheny</span>
-              <span class="stripe-rolle">Gitar · jazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Pat Metheny" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Pat Metheny</span>
+          <span class="kort-rolle">Gitar · jazz</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/bendik-hofseth.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/bendik-hofseth.html">
+          <span class="kort-bilde">
             <img src="assets/artister/bendik-hofseth-400.webp"
                  srcset="assets/artister/bendik-hofseth-400.webp 400w, assets/artister/bendik-hofseth-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Bendik Hofseth" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Bendik Hofseth</span>
-              <span class="stripe-rolle">Saksofon · komposisjon</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Bendik Hofseth" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Bendik Hofseth</span>
+          <span class="kort-rolle">Saksofon · komposisjon</span>
+          <span class="kort-merke">St. Olavs Orden 2026</span>
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/karl-espegard.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/karl-espegard.html">
+          <span class="kort-bilde">
             <img src="assets/artister/karl-espegard-400.webp"
                  srcset="assets/artister/karl-espegard-400.webp 400w, assets/artister/karl-espegard-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Karl Espegard" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Karl Espegard</span>
-              <span class="stripe-rolle">Fiolin · tango</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Karl Espegard" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Karl Espegard</span>
+          <span class="kort-rolle">Fiolin · tango</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/sevag-patey.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/sevag-patey.html">
+          <span class="kort-bilde">
             <img src="assets/artister/sevåg-patey-400.webp"
                  srcset="assets/artister/sevåg-patey-400.webp 400w, assets/artister/sevåg-patey-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Øystein Sevåg &amp; Lakki Patey" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Øystein Sevåg &amp; Lakki Patey</span>
-              <span class="stripe-rolle">Piano · gitar</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Øystein Sevåg &amp; Lakki Patey" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Øystein Sevåg &amp; Lakki Patey</span>
+          <span class="kort-rolle">Piano · gitar</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/ivan-mazuze.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/ivan-mazuze.html">
+          <span class="kort-bilde">
             <img src="assets/artister/ivan-mazuze-400.webp"
                  srcset="assets/artister/ivan-mazuze-400.webp 400w, assets/artister/ivan-mazuze-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Ivan Mazuze" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Ivan Mazuze</span>
-              <span class="stripe-rolle">Saksofon · verdensjazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Ivan Mazuze" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Ivan Mazuze</span>
+          <span class="kort-rolle">Saksofon · verdensjazz</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/hans-mathisen.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/hans-mathisen.html">
+          <span class="kort-bilde">
             <img src="assets/artister/hans-mathisen-400.webp"
                  srcset="assets/artister/hans-mathisen-400.webp 400w, assets/artister/hans-mathisen-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Hans Mathisen" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Hans Mathisen</span>
-              <span class="stripe-rolle">Gitar · komposisjon</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Hans Mathisen" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Hans Mathisen</span>
+          <span class="kort-rolle">Gitar · komposisjon</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/iberg-saabye.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/iberg-saabye.html">
+          <span class="kort-bilde">
             <img src="assets/artister/iberg-saabye-400.webp"
                  srcset="assets/artister/iberg-saabye-400.webp 400w, assets/artister/iberg-saabye-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Helge Iberg &amp; Lars Saabye Christensen" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Helge Iberg &amp; Lars Saabye Christensen</span>
-              <span class="stripe-rolle">Musikk &amp; tekst</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Helge Iberg &amp; Lars Saabye Christensen" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Helge Iberg &amp; Lars Saabye Christensen</span>
+          <span class="kort-rolle">Musikk &amp; tekst</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/katie-mahan.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/katie-mahan.html">
+          <span class="kort-bilde">
             <img src="assets/artister/katie-mahan-400.webp"
                  srcset="assets/artister/katie-mahan-400.webp 400w, assets/artister/katie-mahan-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Katie Mahan" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Katie Mahan</span>
-              <span class="stripe-rolle">Klaver · klassisk</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Katie Mahan" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Katie Mahan</span>
+          <span class="kort-rolle">Klaver · klassisk</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/per-mathisen.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/per-mathisen.html">
+          <span class="kort-bilde">
             <img src="assets/artister/per-mathisen-400.webp"
                  srcset="assets/artister/per-mathisen-400.webp 400w, assets/artister/per-mathisen-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Per Mathisen" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Per Mathisen</span>
-              <span class="stripe-rolle">Bass · «Bass Viking»</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Per Mathisen" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Per Mathisen</span>
+          <span class="kort-rolle">Bass · «Bass Viking»</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/bjerkestrand-eick.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/bjerkestrand-eick.html">
+          <span class="kort-bilde">
             <img src="assets/artister/bjerkestrand-eick-400.webp"
                  srcset="assets/artister/bjerkestrand-eick-400.webp 400w, assets/artister/bjerkestrand-eick-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Kjetil Bjerkestrand &amp; Mathias Eick" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Kjetil Bjerkestrand &amp; Mathias Eick</span>
-              <span class="stripe-rolle">Tangent · trompet</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Kjetil Bjerkestrand &amp; Mathias Eick" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Kjetil Bjerkestrand &amp; Mathias Eick</span>
+          <span class="kort-rolle">Tangent · trompet</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/olga-konkova.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/olga-konkova.html">
+          <span class="kort-bilde">
             <img src="assets/artister/olga-konkova-400.webp"
                  srcset="assets/artister/olga-konkova-400.webp 400w, assets/artister/olga-konkova-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Olga Konkova" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Olga Konkova</span>
-              <span class="stripe-rolle">Piano · jazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Olga Konkova" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Olga Konkova</span>
+          <span class="kort-rolle">Piano · jazz</span>
+          <span class="kort-merke">The Pianist Garden 2024</span>
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/det-norske-damekor.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/det-norske-damekor.html">
+          <span class="kort-bilde">
             <img src="assets/artister/det-norske-damekor-400.webp"
                  srcset="assets/artister/det-norske-damekor-400.webp 400w, assets/artister/det-norske-damekor-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Det Norske Damekor" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Det Norske Damekor</span>
-              <span class="stripe-rolle">Kor · 12 sangere</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Det Norske Damekor" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Det Norske Damekor</span>
+          <span class="kort-rolle">Kor · 12 sangere</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/gryting.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/gryting.html">
+          <span class="kort-bilde">
             <img src="assets/artister/gryting-400.webp"
                  srcset="assets/artister/gryting-400.webp 400w, assets/artister/gryting-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Gryting, far og to sønner" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Gryting, far og to sønner</span>
-              <span class="stripe-rolle">Vokal · familie</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Gryting, far og to sønner" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Gryting, far og to sønner</span>
+          <span class="kort-rolle">Vokal · familie</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/toner-av-u2.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/toner-av-u2.html">
+          <span class="kort-bilde">
             <img src="assets/artister/toner-av-u2-400.webp"
                  srcset="assets/artister/toner-av-u2-400.webp 400w, assets/artister/toner-av-u2-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Toner av U2" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Toner av U2</span>
-              <span class="stripe-rolle">Konsert · fortelling</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Toner av U2" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Toner av U2</span>
+          <span class="kort-rolle">Konsert · fortelling</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/hedvig-mollestad.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/hedvig-mollestad.html">
+          <span class="kort-bilde">
             <img src="assets/artister/hedvig-mollestad-400.webp"
                  srcset="assets/artister/hedvig-mollestad-400.webp 400w, assets/artister/hedvig-mollestad-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Hedvig Mollestad" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Hedvig Mollestad</span>
-              <span class="stripe-rolle">Gitar · rock og frijazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Hedvig Mollestad" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Hedvig Mollestad</span>
+          <span class="kort-rolle">Gitar · rock og frijazz</span>
+          <span class="kort-merke">Artist in residence, Moldejazz 2023</span>
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/knut-anders-sorum.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/knut-anders-sorum.html">
+          <span class="kort-bilde">
             <img src="assets/artister/knut-anders-sorum-400.webp"
                  srcset="assets/artister/knut-anders-sorum-400.webp 400w, assets/artister/knut-anders-sorum-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Knut Anders Sørum" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Knut Anders Sørum</span>
-              <span class="stripe-rolle">Vokal · soul på totendialekt</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Knut Anders Sørum" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Knut Anders Sørum</span>
+          <span class="kort-rolle">Vokal · soul på totendialekt</span>
+          
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/anastasiya-bazhenova.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/anastasiya-bazhenova.html">
+          <span class="kort-bilde">
             <img src="assets/artister/anastasiya-bazhenova-400.webp"
                  srcset="assets/artister/anastasiya-bazhenova-400.webp 400w, assets/artister/anastasiya-bazhenova-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Anastasiya Bazhenova" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Anastasiya Bazhenova</span>
-              <span class="stripe-rolle">Klaver · klassisk</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Anastasiya Bazhenova" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Anastasiya Bazhenova</span>
+          <span class="kort-rolle">Klaver · klassisk</span>
+          <span class="kort-merke">Debutalbum 1. april 2026</span>
         </a>
       </li>
-      <li class="stripe-kort">
-        <a href="artister/emma-smith.html">
-          <span class="stripe-bilde">
+      <li>
+        <a class="kort" href="artister/emma-smith.html">
+          <span class="kort-bilde">
             <img src="assets/artister/emma-smith-400.webp"
                  srcset="assets/artister/emma-smith-400.webp 400w, assets/artister/emma-smith-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="Emma Smith" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">Emma Smith</span>
-              <span class="stripe-rolle">Vokal · britisk jazz</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="Emma Smith" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">Emma Smith</span>
+          <span class="kort-rolle">Vokal · britisk jazz</span>
+          <span class="kort-merke">Jazz Vocalist of the Year 2024</span>
         </a>
       </li>
       </ul>
     </div>
-    <p class="wrap stripe-hint">20 artister og ensembler · bla sidelengs</p>
   </section>
 
   <section class="seksjon" id="video">

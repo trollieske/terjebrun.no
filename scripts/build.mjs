@@ -127,8 +127,7 @@ ${kanonisk ? `<link rel="canonical" href="${NETTSTED}${kanonisk}">` : ''}
 <meta name="theme-color" content="#f7f4ef">
 <link rel="icon" href="${p}assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${p}assets/logo/apple-touch-icon.png">
-<link rel="preload" href="${p}assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="${p}assets/fonts/schibsted-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${p}assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${p}css/style.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Terje Brun-Pedersen">
@@ -156,21 +155,25 @@ ${bunn(p)}
 /* ------------------------------------------------------------- biter */
 
 function artistkort(a) {
-  return `      <li class="stripe-kort">
-        <a href="artister/${a.slug}.html">
-          <span class="stripe-bilde">
+  return `      <li>
+        <a class="kort" href="artister/${a.slug}.html">
+          <span class="kort-bilde">
             <img src="assets/artister/${a.bilde}-400.webp"
                  srcset="assets/artister/${a.bilde}-400.webp 400w, assets/artister/${a.bilde}-800.webp 800w"
-                 sizes="min(34vw, 280px)"
-                 alt="${esc(a.navn)}" width="400" height="500" loading="lazy" decoding="async">
-            <span class="stripe-slor"></span>
-            <span class="stripe-tekst">
-              <span class="stripe-navn">${esc(a.navn)}</span>
-              <span class="stripe-rolle">${esc(a.rolle)}</span>
-            </span>
+                 sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
+                 alt="${esc(a.navn)}" width="400" height="400" loading="lazy" decoding="async">
           </span>
+          <span class="kort-navn">${esc(a.navn)}</span>
+          <span class="kort-rolle">${esc(a.rolle)}</span>
+          ${a.merke ? `<span class="kort-merke">${esc(a.merke)}</span>` : ''}
         </a>
       </li>`;
+}
+
+/** Navnene som ruller i stripa under helten. `skjult` brukes for kopien som
+    gjør at rullen går i ett uten hopp (den skal ikke leses opp to ganger). */
+function navnepunkt(a, skjult) {
+  return `        <li><a href="artister/${a.slug}.html"${skjult ? ' tabindex="-1" aria-hidden="true"' : ''}>${esc(a.navn)}</a></li>`;
 }
 
 const AVSPILL = `<span class="video-avspill"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></span>`;
@@ -304,7 +307,12 @@ forside = forside.replace(
   '<!-- ARTISTER_TELLING -->',
   `${artister.length} artister og ensembler`
 );
-forside = forside.replace('<!-- ARTISTER_ANTALL -->', String(artister.length).padStart(2, '0'));
+forside = forside.replace(
+  '<!-- NAVNESTRIPE -->',
+  [...artister, ...artister.map((a) => ({ ...a, skjult: true }))]
+    .map((a) => navnepunkt(a, a.skjult))
+    .join('\n')
+);
 forside = forside.replace('<!-- VIDEOER -->', video.videoer.filter((v) => v.forside).map(videokort).join('\n'));
 forside = forside.replace(
   '<!-- PRODUKSJONER -->',
