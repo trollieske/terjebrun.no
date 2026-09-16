@@ -1,0 +1,25 @@
+# avhengigheter
+node_modules/
+.pnpm-store/
+
+# bygg
+dist/
+build/
+.astro/
+.output/
+
+# miljø / hemmeligheter
+.env
+.env.*
+!.env.example
+
+# redaktør og OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# logg
+*.log
+npm-debug.log*
