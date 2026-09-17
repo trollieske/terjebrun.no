@@ -37,7 +37,7 @@ scripts/
   build.mjs           bygger alle sider
   sjekk-lenker.py     sjekker at ingen lokale lenker eller bilder er døde
 css/style.css         all styling
-js/site.js            YouTube-avspilling på klikk
+js/site.js            fargetema + YouTube-avspilling på klikk
 assets/
   artister/           portretter i 400 og 800 px (webp)
   bilder/             scene- og produksjonsbilder i 900 og 1600 px (webp)
@@ -51,6 +51,11 @@ dev/merke.html        forslagsside for logoen (noindex, ikke del av siden)
 `artister/*.html` og
 `sitemap.xml` skrives av `npm run build`. Ikke rediger dem direkte — endre
 `data/*.json` eller `src/*.html` og bygg på nytt.
+
+**Forhåndsvisning:** `FORHÅNDSVISNING = true` i `scripts/build.mjs` legger inn
+`<meta name="robots" content="noindex, nofollow">` på alle sider, slik at
+forslaget på GitHub Pages ikke havner i søkemotorene. Sett den til `false` og
+bygg på nytt når domenet er koblet på.
 
 ## Legge til eller endre en artist
 
@@ -164,6 +169,23 @@ magick assets/bilder/galla-1600.webp -resize 1100x -blur 0x5 \
 ser ut som et fotografi. `-modulate 84,105` er lysstyrke 84 % og metning 105 %.
 Mer blur eller mer metning enn dette, og båndet begynner å konkurrere med logoen
 om oppmerksomheten (det ble prøvd — det så ut som en rød suppe).
+
+## Fargetema
+
+Siden følger operativsystemet. I tillegg kan den som ser på designet velge selv
+med bryteren helt til høyre i toppmenyen — det er nyttig på desktop, der man
+ikke vil endre systeminnstillingen for å se begge temaene.
+
+- Valget lagres i `localStorage` under nøkkelen `tema` (`lys` eller `mork`).
+- Et lite script i `<head>` (`scripts/build.mjs`) leser valget *før* første
+  tegning, så det ikke blinker i feil tema.
+- Uten valg følger siden systemet videre, også om man bytter mens siden står
+  åpen (`matchMedia`-lytteren i `js/site.js`).
+- Uten JavaScript gjelder `@media (prefers-color-scheme: dark)` i CSS-en som
+  før; da virker ikke bryteren, men temaet gjør det.
+
+Fargene ligger i `:root` (lyst) og i to blokker med mørke verdier — én for
+systemvalget (`@media`) og én for det egne valget (`:root[data-tema='mork']`).
 
 ## Ytelse og tilgjengelighet
 

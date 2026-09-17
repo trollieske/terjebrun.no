@@ -25,6 +25,10 @@ const produksjoner = JSON.parse(les('data/produksjoner.json'));
 const video = JSON.parse(les('data/video.json'));
 const bilder = JSON.parse(les('data/bilder.json')).bilder;
 
+/* Så lenge siden ligger på GitHub Pages som forslag til kunden, holder vi den
+   utenfor søk. Sett dette til false når domenet er koblet på og siden er skarp. */
+const FORHÅNDSVISNING = true;
+
 const NETTSTED = 'https://terjebrun.no';
 const EPOST = 'tbrun-pe@online.no';
 const TELEFON = '+4792604030';
@@ -83,15 +87,23 @@ function hode(aktiv, p = '') {
   return `<header class="hode">
   <div class="hode-inn">
     ${merke(p)}
-    <nav class="meny" aria-label="Hovedmeny">
-      ${lenker
-        .map(
-          ([href, tekst, navn]) =>
-            `<a href="${href}"${aktiv === navn ? ' aria-current="page"' : ''}>${tekst}</a>`
-        )
-        .join('\n      ')}
-      <a class="knapp" href="mailto:${EPOST}?subject=Booking">Ta kontakt</a>
-    </nav>
+    <div class="hode-hoyre">
+      <nav class="meny" aria-label="Hovedmeny">
+        ${lenker
+          .map(
+            ([href, tekst, navn]) =>
+              `<a href="${href}"${aktiv === navn ? ' aria-current="page"' : ''}>${tekst}</a>`
+          )
+          .join('\n        ')}
+        <a class="knapp" href="mailto:${EPOST}?subject=Booking">Ta kontakt</a>
+      </nav>
+      <button class="tema-bryter" type="button" role="switch" aria-checked="false" aria-label="Mørkt tema">
+        <span class="tema-knapp" aria-hidden="true">
+          <svg class="tema-ikon tema-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9"/></svg>
+          <svg class="tema-ikon tema-mane" viewBox="0 0 24 24" fill="currentColor"><path d="M20.2 14.9A8.6 8.6 0 0 1 9.1 3.8 8.7 8.7 0 1 0 20.2 14.9Z"/></svg>
+        </span>
+      </button>
+    </div>
   </div>
 </header>`;
 }
@@ -135,11 +147,14 @@ function layout({ tittel, beskrivelse, innhold, aktiv = '', kanonisk = '', bilde
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(tittel)}</title>
 <meta name="description" content="${esc(beskrivelse)}">
+${FORHÅNDSVISNING ? '<meta name="robots" content="noindex, nofollow">' : ''}
 ${kanonisk ? `<link rel="canonical" href="${NETTSTED}${kanonisk}">` : ''}
 <meta name="theme-color" content="#f7f4ef">
 <link rel="icon" href="${p}assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${p}assets/logo/apple-touch-icon.png">
 <link rel="preload" href="${p}assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>/* Fargetema: tar brukerens valg før første tegning, så det ikke blinker. */
+try{var t=localStorage.getItem('tema');if(t)document.documentElement.dataset.tema=t}catch(e){}</script>
 <link rel="stylesheet" href="${p}css/style.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Terje Brun-Pedersen">
