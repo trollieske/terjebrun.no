@@ -9,8 +9,8 @@ Ren HTML/CSS/JS uten rammeverk og uten tredjeparter i det kritiske løpet.
 > **Designversjoner:** `design-v1` og `design-v2` ligger som tagger og brancher.
 > v1 = stor helt med «Først artisten. Så rommet.» og artistrutenett.
 > v2 = lav helt, TBP-logo, artistkarusell med bilder.
-> `main` = dagens: heltevideo, navnestripe som ruller, artistrutenett og
-> Apple-aktig typografi. Hent en eldre versjon med `git checkout design-v1`.
+> `main` = dagens: artistene først — ingen helt og ingen navnestripe, bare
+> artistrutenettet — med TBP-merket i toppmenyen og Apple-aktig typografi. Hent en eldre versjon med `git checkout design-v1`.
 
 ## Kom i gang
 
@@ -28,25 +28,27 @@ data/
   artister.json       alle artister: navn, rolle, bilder, bio, lenker
   produksjoner.json   utvalgte produksjoner med tekst og bilde
   video.json          YouTube-videoer (id, tittel, år, hvor de vises)
+  bilder.json         bildene i galleriet (fil, bildetekst, hvor de vises)
 src/
   index.html          innholdet på forsiden (uten hode/bunn)
+  bilder.html         innholdet på billedsiden
   produksjoner.html   innholdet på produksjonssiden
 scripts/
   build.mjs           bygger alle sider
   sjekk-lenker.py     sjekker at ingen lokale lenker eller bilder er døde
 css/style.css         all styling
-js/site.js            karusell + YouTube-avspilling på klikk (ca. 90 linjer)
+js/site.js            YouTube-avspilling på klikk
 assets/
   artister/           portretter i 400 og 800 px (webp)
   bilder/             scene- og produksjonsbilder i 900 og 1600 px (webp)
   video/              miniatyrbilder til videoene (webp)
-  video/helt-av1.webm heltevideo (AV1, 737 kB) + helt.mp4 (H.264, 1,1 MB)
   fonts/              Inter (selvhostet, latin, vanlig + kursiv)
-  logo/               merket, favicon, apple-touch-icon
+  logo/               tbp-merke.svg (merket i toppmenyen), favicon, apple-touch-icon
 dev/merke.html        forslagsside for logoen (noindex, ikke del av siden)
 ```
 
-**Genererte filer:** `index.html`, `produksjoner.html`, `artister/*.html` og
+**Genererte filer:** `index.html`, `bilder.html`, `produksjoner.html`,
+`artister/*.html` og
 `sitemap.xml` skrives av `npm run build`. Ikke rediger dem direkte — endre
 `data/*.json` eller `src/*.html` og bygg på nytt.
 
@@ -72,42 +74,11 @@ artistsidene der det finnes sitater). Ingen Google-kall.
 Vil man bytte skrift senere, holder det å endre `--skrift` og `@font-face` i
 `css/style.css`.
 
-## Heltevideoen
-
-Videoen bak overskriften er klippet av Terjes egen YouTube-video
-(«Gryting, far og sønner», N-RyQVjLWyY). Originalen blir liggende på YouTube —
-vi bruker bare et kort, lydløst utsnitt.
-
-- 12 sekunder, 1280×720, 25 fps, uten lyd, satt sammen i loop med en
-  ett sekunds overtoning til sitt eget opphav, så den går i ett uten hopp.
-- To formater: `helt-av1.webm` (737 kB) og `helt.mp4` som reserve for Safari
-  (1,1 MB). Nettleseren velger selv det minste den støtter.
-- `helt-poster-1600.webp` (66 kB) ligger under og er det første bildet på
-  skjermen. Videoen lastes først etter `load`, og hoppes helt over hvis
-  brukeren har «reduser bevegelse» eller datasparemodus på.
-
-Slik lages den på nytt (bytt tidskoden `-ss` for et annet utsnitt):
-
-```bash
-yt-dlp -f 136 -o kilde.mp4 "https://www.youtube.com/watch?v=N-RyQVjLWyY"
-# 13 sekunder inn, 12 ut, med ett sekunds overtoning til sitt eget opphav:
-ffmpeg -ss 94 -t 13 -i kilde.mp4 -filter_complex \
- "[0:v]split[a][b];[a]trim=0:12,setpts=PTS-STARTPTS,fps=25[main];\
-  [b]trim=0:1,setpts=PTS-STARTPTS,fps=25[head];\
-  [main][head]xfade=transition=fade:duration=1:offset=11,format=yuv420p[v]" \
- -map "[v]" -an -c:v libx264 -crf 16 -preset medium loop.mp4
-ffmpeg -i loop.mp4 -an -c:v libsvtav1 -crf 42 -preset 6 helt-av1.webm
-ffmpeg -i loop.mp4 -an -c:v libx264 -crf 30 -preset slow -movflags +faststart helt.mp4
-ffmpeg -i loop.mp4 -frames:v 1 -y poster.png
-```
-
-## Navnestripa
-
-Under helten ruller artistnavnene forbi av seg selv (ren CSS-animasjon på
-`transform`, som går på grafikkortet). Listen ligger to ganger i markupen, slik
-at den går i ett uten hopp; den andre kopien er `aria-hidden`. Den stopper når
-man holder musen over eller tabber inn i den, og står helt stille for dem som
-har «reduser bevegelse» på.
+Grunnvekten er satt til **450** i stedet for 400 (`body` i `css/style.css`).
+Både SF Pro og Inter er variable, så 450 er en ekte mellomvekt og ikke en
+avrunding. Det gir brødtekst, menylenker og de små rollenlappene («VOKAL · JAZZ»)
+litt mer tyngde uten at noe blir halvfet. Vil man ha det tynnere eller tyngre,
+er det tallet som skal justeres.
 
 ## Bilder
 
@@ -122,23 +93,87 @@ magick inn.jpg -auto-orient -resize '1600x1600^' -gravity north -extent 1:1 \
   -resize 800x800 -strip -quality 80 ut-800.webp
 ```
 
+### Bildegalleriet
+
+Alle bildene står i `data/bilder.json`: `fil` viser til
+`assets/bilder/<fil>-900.webp` og `<fil>-1600.webp` (16:9), og `tekst` er
+bildeteksten under. Rekkefølgen i fila er rekkefølgen på siden.
+
+```json
+{ "fil": "festaften", "tekst": "Kulturens festaften · Drammen Teater 2016", "forside": true }
+```
+
+- **Forsiden** viser bare de som har `"forside": true` — en liten, kuratert
+  smakebit i tre kolonner, med lenke til hele galleriet. Uten den ville
+  billedseksjonen blitt mange skjermhøyder å scrolle.
+- **`bilder.html`** viser alle, i fire kolonner (tre på nettbrett, to på
+  telefon).
+
+Hvert bilde lenker til 1600 px-fila, så man kan se det i full størrelse uten
+noe lysbilde-script. Nye bilder legges i `assets/bilder/` i 900 og 1600 px
+bredde (webp), med samme navn pluss `-900`/`-1600`.
+
+
 ## Logo og navn
 
-Navnet i låsningen er **TBP Music Management** (som på den gamle siden), med
-Terje Brun-Pedersen som undertittel. Det er bare tekst — skal han heller bruke
-«TBP Kultur», endrer vi `MERKE_NAVN` i `scripts/build.mjs`.
+Merket er `assets/logo/tbp-merke.svg`: notekløver, ansiktsprofil og lydbølger.
+`scripts/build.mjs` leser fila og setter den inn i toppmenyen på alle sider.
+Det farges med `currentColor`, så det blir blekk på papir i lyst tema og papir
+på blekk i mørkt — uten en egen fil for mørk modus.
 
-Merket ligger i `assets/logo/` og vises på `dev/merke.html` (åpne filen i
-nettleseren). Det er geometrisk — scene, stativ og en tone — og fungerer ned
-til 16 px uten egen skrift.
+SVG-en er skåret til merkets egne mål (`viewBox="71 451 448 600"`, altså 448×600)
+og koordinatene er rundet av til to desimaler. Det er kontrollert ved å rendre
+før og etter: ingen ulike piksler, men fila går fra 4,7 kB til 3,3 kB.
+
+Bokstaverne i den opprinnelige logofila («TBP» og «MUSIC MANAGEMENT») er **ikke**
+med i SVG-en. I en meny på 72 px ville den lille linja blitt 2–3 px høy og
+uleselig. Navnet settes i stedet som tekst ved siden av merket, med samme skrift
+som resten av siden:
+
+- `MERKE_NAVN` = **TBP Music Management** (16–17 px, halvfet)
+- `MERKE_UNDER` = Terje Brun-Pedersen · Drammen (10 px, sperret, aksentfarge)
+
+Vil han heller bruke «TBP Kultur», endrer vi `MERKE_NAVN` i `scripts/build.mjs`.
+
+`favicon.svg`, `favicon.ico` og `apple-touch-icon.png` er en forenklet utgave
+(bare T-en) som tåler 16 px. `dev/merke.html` viser det forrige merkeforslaget
+og er ikke en del av siden.
+
+### Båndet øverst på forsiden
+
+Der står hele logoen (med bokstaver) på et uskarpt scenebilde — en bokeh av
+lyskilder fra salen:
+
+- `assets/logo/tbp-logo-hvit.svg` — den hvite logoen, alltid (båndet er mørkt
+  i begge temaer, så den svarte varianten brukes ikke på nett)
+- `assets/bilder/topp-bokeh.webp` — 1100×619, bare ~8 kB, fordi uskarpheten er
+  bakt inn i fila. Nettleseren slipper da å gjøre en dyr blur på mobil.
+- `assets/logo/tbp-logo-svart.svg` beholdes for lys bakgrunn (dokumenter, trykk).
+
+Bildet er laget fra `assets/bilder/galla-1600.webp`. Slik lages det på nytt
+(bytt kildefil for et annet motiv — `festforestilling`, `festaften`,
+`vinterfestivalen` og `ute` er prøvd, `galla` ga den fineste bokehen):
+
+```bash
+magick assets/bilder/galla-1600.webp -resize 1100x -blur 0x5 \
+  -modulate 84,105 -sigmoidal-contrast 3,55% -quality 82 \
+  assets/bilder/topp-bokeh.webp
+```
+
+`-blur 0x5` er nok til at lysene flyter sammen, men lite nok til at det fortsatt
+ser ut som et fotografi. `-modulate 84,105` er lysstyrke 84 % og metning 105 %.
+Mer blur eller mer metning enn dette, og båndet begynner å konkurrere med logoen
+om oppmerksomheten (det ble prøvd — det så ut som en rød suppe).
 
 ## Ytelse og tilgjengelighet
 
 - Egenhostede variable fonter (114 kB til sammen), ingen tredjepartsforespørsler.
-- Alle bilder i webp med `srcset`, faste mål og `loading="lazy"` (unntatt hero).
+- Alle bilder i webp med `srcset`, faste mål og `loading="lazy"`. Det første
+  artistbildet hentes med én gang (`fetchpriority="high"`), siden det er det
+  første man ser.
 - YouTube lastes som bilde; spilleren kobles først inn ved klikk
   (`youtube-nocookie.com`). Uten JavaScript går lenken til YouTube.
-- Ett stilkark, ca. 20 linjer JavaScript. Ingen rammeverk.
+- Ett stilkark, 22 linjer JavaScript. Ingen rammeverk.
 - Semantisk HTML, `alt`-tekster, `aria-current`, hopp-til-innhold, fokusringer
   og `prefers-reduced-motion`.
 - Mørkt tema følger systemvalget.

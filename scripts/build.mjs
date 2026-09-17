@@ -23,6 +23,7 @@ const skriv = (p, innhold) => {
 const artister = JSON.parse(les('data/artister.json'));
 const produksjoner = JSON.parse(les('data/produksjoner.json'));
 const video = JSON.parse(les('data/video.json'));
+const bilder = JSON.parse(les('data/bilder.json')).bilder;
 
 const NETTSTED = 'https://terjebrun.no';
 const EPOST = 'tbrun-pe@online.no';
@@ -45,16 +46,25 @@ const IKON = {
     '<rect x="3" y="6" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 6V4h8v2M3 12h18" fill="none" stroke="currentColor" stroke-width="1.6"/>',
   kontakt:
     '<path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h1.2c.6 0 1.1.4 1.2 1l.5 2.6c.1.5-.1 1-.5 1.3l-1 .7a11 11 0 0 0 4.5 4.5l.7-1c.3-.4.8-.6 1.3-.5l2.6.5c.6.1 1 .6 1 1.2V17a2.5 2.5 0 0 1-2.5 2.5C8.6 19.5 4 14.9 4 8.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+  bilder:
+    '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.6" cy="10" r="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.4 17.5 9 12.6l3.4 3 3-2.4 5.2 4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
 };
 
-function merke(p = '', storrelse = 30) {
+/* Merket er en egen SVG-fil (notekløver, ansiktsprofil og lydbølger) som settes
+   rett inn i markupen. Det farges med currentColor og følger derfor temaet.
+   Bokstavene «TBP Music Management» står som tekst ved siden av, ikke inne i
+   fila: i en meny på 72 px ville «MUSIC MANAGEMENT»-linja blitt et par piksler. */
+const MERKE_SVG = les('assets/logo/tbp-merke.svg')
+  .replace(/^<!--[\s\S]*?-->\s*/, '')
+  .replace('<svg ', '<svg class="merke-ikon" aria-hidden="true" ')
+  .trim()
+  .split('\n')
+  .map((linje) => (linje ? '        ' + linje : linje))
+  .join('\n');
+
+function merke(p = '') {
   return `<a class="merke" href="${p}index.html" aria-label="Terje Brun-Pedersen – til forsiden">
-        <svg class="merke-ikon" viewBox="0 0 64 64" width="${storrelse}" height="${storrelse}" aria-hidden="true">
-          <rect width="64" height="64" rx="14" fill="var(--blekk)"/>
-          <rect x="13" y="17" width="38" height="5" rx="2.5" fill="var(--aksent)"/>
-          <rect x="29.5" y="17" width="5" height="30" rx="2.5" fill="var(--papir)"/>
-          <rect x="21" y="45" width="22" height="5" rx="2.5" fill="var(--papir)"/>
-        </svg>
+${MERKE_SVG}
         <span class="merke-tekst">
           <span class="merke-navn">${MERKE_NAVN}</span>
           <span class="merke-rolle">${MERKE_UNDER}</span>
@@ -65,6 +75,7 @@ function merke(p = '', storrelse = 30) {
 function hode(aktiv, p = '') {
   const lenker = [
     [`${p}index.html#artister`, 'Artister', 'artister'],
+    [`${p}bilder.html`, 'Bilder', 'bilder'],
     [`${p}index.html#video`, 'Video', 'video'],
     [`${p}produksjoner.html`, 'Produksjoner', 'produksjoner'],
     [`${p}index.html#om`, 'Om', 'om'],
@@ -79,7 +90,7 @@ function hode(aktiv, p = '') {
             `<a href="${href}"${aktiv === navn ? ' aria-current="page"' : ''}>${tekst}</a>`
         )
         .join('\n      ')}
-      <a class="knapp" href="mailto:${EPOST}?subject=Booking">Be om tilgjengelighet</a>
+      <a class="knapp" href="mailto:${EPOST}?subject=Booking">Ta kontakt</a>
     </nav>
   </div>
 </header>`;
@@ -89,6 +100,7 @@ function bunnavigasjon(aktiv, p = '') {
   const punkter = [
     [`${p}index.html`, 'Hjem', 'hjem'],
     [`${p}index.html#artister`, 'Artister', 'artister'],
+    [`${p}bilder.html`, 'Bilder', 'bilder'],
     [`${p}produksjoner.html`, 'Produksjoner', 'produksjoner'],
     [`${p}index.html#kontakt`, 'Kontakt', 'kontakt'],
   ];
@@ -104,14 +116,14 @@ function bunnavigasjon(aktiv, p = '') {
 </nav>`;
 }
 
-function bunn(p = '') {
+function bunn(aktiv = '', p = '') {
   return `<footer class="bunn">
   <div class="wrap bunn-inn">
     <p>${MERKE_NAVN} · Terje Brun-Pedersen · Drammen</p>
     <p>Konsertfoto: Børre Erik Helgerud. Enkeltbilder: se kreditering på artistsidene.</p>
   </div>
 </footer>
-${bunnavigasjon('', p)}`;
+${bunnavigasjon(aktiv, p)}`;
 }
 
 function layout({ tittel, beskrivelse, innhold, aktiv = '', kanonisk = '', bilde = '', struktur = '', p = '' }) {
@@ -145,7 +157,7 @@ ${hode(aktiv, p)}
 <main id="innhold">
 ${innhold}
 </main>
-${bunn(p)}
+${bunn(aktiv, p)}
 <script src="${p}js/site.js" defer></script>
 </body>
 </html>
@@ -154,14 +166,17 @@ ${bunn(p)}
 
 /* ------------------------------------------------------------- biter */
 
-function artistkort(a) {
+function artistkort(a, forst = false) {
+  // Første kort står øverst på forsiden og er det første bildet på skjermen,
+  // så det hentes med én gang og med høy prioritet. Resten lastes når de nærmer seg.
+  const lasting = forst ? 'fetchpriority="high"' : 'loading="lazy"';
   return `      <li>
         <a class="kort" href="artister/${a.slug}.html">
           <span class="kort-bilde">
             <img src="assets/artister/${a.bilde}-400.webp"
                  srcset="assets/artister/${a.bilde}-400.webp 400w, assets/artister/${a.bilde}-800.webp 800w"
                  sizes="(min-width:1024px) 22vw, (min-width:700px) 30vw, 45vw"
-                 alt="${esc(a.navn)}" width="400" height="400" loading="lazy" decoding="async">
+                 alt="${esc(a.navn)}" width="400" height="400" ${lasting} decoding="async">
           </span>
           <span class="kort-navn">${esc(a.navn)}</span>
           <span class="kort-rolle">${esc(a.rolle)}</span>
@@ -170,10 +185,20 @@ function artistkort(a) {
       </li>`;
 }
 
-/** Navnene som ruller i stripa under helten. `skjult` brukes for kopien som
-    gjør at rullen går i ett uten hopp (den skal ikke leses opp to ganger). */
-function navnepunkt(a, skjult) {
-  return `        <li><a href="artister/${a.slug}.html"${skjult ? ' tabindex="-1" aria-hidden="true"' : ''}>${esc(a.navn)}</a></li>`;
+/* Bildene er 16:9 i to bredder. Klikket går til 1600 px-fila, så man kan se
+   bildet i full størrelse uten noe lysbilde-script. */
+function bildekort(b) {
+  return `      <li>
+        <figure>
+          <a href="assets/bilder/${b.fil}-1600.webp">
+            <img src="assets/bilder/${b.fil}-900.webp"
+                 srcset="assets/bilder/${b.fil}-900.webp 900w, assets/bilder/${b.fil}-1600.webp 1600w"
+                 sizes="(min-width: 1100px) 30vw, (min-width: 700px) 45vw, 92vw"
+                 alt="" width="1600" height="900" loading="lazy" decoding="async">
+          </a>
+          <figcaption>${esc(b.tekst)}</figcaption>
+        </figure>
+      </li>`;
 }
 
 const AVSPILL = `<span class="video-avspill"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></span>`;
@@ -302,16 +327,14 @@ artister.forEach((a, i) => {
 
 console.log('Bygger forsiden …');
 let forside = les('src/index.html');
-forside = forside.replace('<!-- ARTISTER -->', artister.map(artistkort).join('\n'));
+forside = forside.replace('<!-- ARTISTER -->', artister.map((a, i) => artistkort(a, i === 0)).join('\n'));
 forside = forside.replace(
   '<!-- ARTISTER_TELLING -->',
   `${artister.length} artister og ensembler`
 );
 forside = forside.replace(
-  '<!-- NAVNESTRIPE -->',
-  [...artister, ...artister.map((a) => ({ ...a, skjult: true }))]
-    .map((a) => navnepunkt(a, a.skjult))
-    .join('\n')
+  '<!-- FORSIDEBILDER -->',
+  bilder.filter((b) => b.forside).map(bildekort).join('\n')
 );
 forside = forside.replace('<!-- VIDEOER -->', video.videoer.filter((v) => v.forside).map(videokort).join('\n'));
 forside = forside.replace(
@@ -363,8 +386,24 @@ skriv(
   })
 );
 
+console.log('Bygger bildesiden …');
+let bildeSide = les('src/bilder.html');
+bildeSide = bildeSide.replace('<!-- BILDER -->', bilder.map(bildekort).join('\n'));
+bildeSide = bildeSide.replace('<!-- BILDER_TELLING -->', `${bilder.length} bilder`);
+skriv(
+  'bilder.html',
+  layout({
+    tittel: `Bilder | ${MERKE_NAVN}`,
+    beskrivelse:
+      'Bilder fra konserter, festivaler og produksjoner med TBP Music Management og Terje Brun-Pedersen i Drammen — fra Drammen Teater og Bragernes kirke til bokmessa i Frankfurt.',
+    innhold: bildeSide,
+    aktiv: 'bilder',
+    kanonisk: '/bilder.html',
+  })
+);
+
 console.log('Bygger sitemap …');
-const sider = ['/', '/produksjoner.html', ...artister.map((a) => `/artister/${a.slug}.html`)];
+const sider = ['/', '/bilder.html', '/produksjoner.html', ...artister.map((a) => `/artister/${a.slug}.html`)];
 skriv(
   'sitemap.xml',
   `<?xml version="1.0" encoding="UTF-8"?>

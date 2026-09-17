@@ -5,7 +5,7 @@ import os, re, sys, glob
 from urllib.parse import urlparse, unquote
 
 ROT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-filer = ['index.html', 'produksjoner.html'] + sorted(glob.glob('artister/*.html'))
+filer = sorted(glob.glob('*.html')) + sorted(glob.glob('artister/*.html'))
 feil, eksterne, antall = [], set(), 0
 
 for f in filer:
