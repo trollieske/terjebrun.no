@@ -125,6 +125,13 @@ h1, h2, h3 {
 }
 .seksjon-tittel { font-size: clamp(1.9rem, 4.4vw, 3rem); }
 .seksjon-telling { color: var(--blekk-dempet); font-size: 14px; letter-spacing: .04em; }
+.seksjon-lede {
+  max-width: 58ch;
+  margin: calc(clamp(24px, 4vw, 40px) * -1) 0 clamp(24px, 4vw, 40px);
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--blekk-dempet);
+}
 .skjul { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
 /* --- knapper ----------------------------------------------------------- */
@@ -297,16 +304,32 @@ h1, h2, h3 {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(to bottom, rgba(22, 20, 15, 0) 70%, var(--papir) 100%),
+    linear-gradient(to bottom, rgba(22, 20, 15, 0) 74%, var(--papir) 100%),
+    radial-gradient(90% 95% at 50% 58%, rgba(22, 20, 15, .42), rgba(22, 20, 15, 0) 76%),
     radial-gradient(120% 140% at 50% 46%, rgba(22, 20, 15, 0) 30%, rgba(22, 20, 15, .5) 100%),
-    linear-gradient(rgba(22, 20, 15, .22), rgba(22, 20, 15, .3));
+    linear-gradient(rgba(22, 20, 15, .28), rgba(22, 20, 15, .34));
 }
-.topp-inn { display: flex; justify-content: center; }
+.topp-inn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 26px);
+  text-align: center;
+}
 .topp-merke {
   position: relative;
-  width: clamp(180px, 23vw, 330px);
+  width: clamp(170px, 18vw, 255px);
   height: auto;
   filter: drop-shadow(0 3px 22px rgba(0, 0, 0, .5));
+}
+/* Kundens tre linjer. Balansert over to linjer på desktop, og aldri bredere
+   enn at øyet rekker dem i ett. */
+.topp-tittel {
+  max-width: 26ch;
+  color: #fff;
+  font-size: clamp(1.3rem, 2.5vw, 1.95rem);
+  line-height: 1.14;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, .35);
 }
 /* Seksjonen rett under logoen trenger ikke full seksjonsluft på toppen */
 .topp + .seksjon { padding-top: clamp(26px, 3.6vw, 52px); }
@@ -456,6 +479,22 @@ h1, h2, h3 {
 .prod-aar { font-size: 12px; letter-spacing: .1em; color: var(--blekk-dempet); }
 .prod-rolle { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--blekk-dempet); margin-top: 3px; }
 
+/* --- erfaring: tekst og bilde side om side ----------------------------- */
+.erfaring {
+  display: grid;
+  gap: clamp(24px, 4vw, 52px);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+.erfaring-bilde { margin: 0; }
+.erfaring-bilde img { width: 100%; height: auto; border-radius: var(--radius); }
+.erfaring-bilde figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--blekk-dempet);
+}
+.erfaring-tekst p { max-width: 46ch; }
+
 /* --- om ---------------------------------------------------------------- */
 .om {
   display: grid;
@@ -481,7 +520,14 @@ h1, h2, h3 {
   padding-block: clamp(52px, 8vw, 96px);
 }
 .kontakt .eyebrow { color: #dc9a70; }
-.kontakt h2 { font-size: clamp(2rem, 5.4vw, 3.6rem); margin: 10px 0 26px; max-width: 20ch; }
+.kontakt h2 { font-size: clamp(2rem, 5.4vw, 3.6rem); margin: 10px 0 18px; max-width: 20ch; }
+.kontakt-lede {
+  max-width: 48ch;
+  margin-bottom: clamp(26px, 4vw, 40px);
+  font-size: clamp(1.04rem, 1.5vw, 1.22rem);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--mork-blekk) 78%, transparent);
+}
 .kontakt-rader { display: grid; gap: 2px; max-width: 760px; }
 .kontakt-rad {
   display: flex;
@@ -607,6 +653,7 @@ a.kontakt-rad:hover .kontakt-verdi { color: #e8b48d; }
   .rutenett { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .galleri { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .om { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
+  .erfaring { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); }
   .artist { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
   .prod-side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
   .artist-foto, .prod-side-bilde { position: sticky; top: calc(var(--hode) + 24px); }

@@ -211,6 +211,25 @@ Husk å endre `NETTSTED` i `scripts/build.mjs` hvis domenet blir et annet.
 
 ## Ting som bør avklares med Terje
 
+**Fra teksten han sendte inn (linjene er lagt inn slik):**
+
+- Linje 1 («Utvalgte musikere. Sterke konserter. Pålitelig samarbeid.») står i
+  båndet øverst, som sidens `h1`. Linje 2 står som ledetekst under «Artister»,
+  linje 3 som invitasjon i kontakten, og linje 4–5 som egen seksjon
+  («Internasjonal erfaring / Stort nettverk») med bildet av ham og Pat Metheny.
+  Er han enig i den fordelingen, eller vil han ha hele teksten samlet øverst?
+- **Bildeteksten** under bildet sier «Terje Brun-Pedersen og Pat Metheny»,
+  altså hans egen rekkefølge. På bildet står Pat Metheny til venstre. Skal
+  teksten følge bildet i stedet?
+- **Metabeskrivelsen** (den som vises i Google) nevner fortsatt «kulturhus,
+  festivaler, klubber og private arrangementer». Det står ikke lenger på
+  siden. Skal den følge den nye teksten hans?
+- Han skriver «vi» i den nye teksten, mens «Om»-teksten er i jeg-form. Det er
+  en grei arbeidsdeling (byrået snakker som vi, han som person snakker som
+  jeg), men greit å bekrefte.
+
+**Bilder og innhold:**
+
 - Portrettbildet i «Om»-seksjonen er hentet fra den gamle siden — er det ham,
   eller skal vi bruke et nyere bilde?
 - Bildet av Kjetil Bjerkestrand & Mathias Eick var et trebilde på den gamle
