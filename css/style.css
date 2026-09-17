@@ -348,7 +348,6 @@ h1, h2, h3 {
 }
 .presentasjon-tittel {
   max-width: 28ch;
-  margin-top: 10px;
   font-size: clamp(1.7rem, 3.4vw, 2.6rem);
 }
 /* Andre del av overskriften i aksentfargen — den ene av de to fargene vi
@@ -356,17 +355,18 @@ h1, h2, h3 {
 .presentasjon-tittel .aksent { color: var(--aksent); }
 .presentasjon-lede {
   max-width: 50ch;
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.45;
 }
 .presentasjon-nettverk {
-  margin-top: clamp(24px, 3vw, 34px);
+  /* God luft over, tett under — så «Stort nettverk» leses som nytt avsnitt */
+  margin-top: clamp(32px, 3.8vw, 48px);
   font-size: clamp(1.15rem, 1.9vw, 1.45rem);
 }
 .presentasjon-brødtekst {
   max-width: 50ch;
-  margin-top: 10px;
+  margin-top: 12px;
   color: var(--blekk-dempet);
 }
 
@@ -374,9 +374,12 @@ h1, h2, h3 {
 .presentasjon-hoyre {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2.4vw, 28px);
+  gap: clamp(24px, 3vw, 38px);
 }
-.presentasjon-cta { border-top: 1px solid var(--strek); padding-top: clamp(18px, 2.2vw, 24px); }
+.presentasjon-cta {
+  border-top: 1px solid var(--strek);
+  padding-top: clamp(20px, 2.6vw, 30px);
+}
 .presentasjon-cta p {
   max-width: 46ch;
   font-size: clamp(1.02rem, 1.45vw, 1.16rem);
