@@ -360,12 +360,29 @@ h1, h2, h3 {
   font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.45;
 }
-.presentasjon-invitasjon {
-  max-width: 44ch;
-  margin-top: 18px;
+.presentasjon-nettverk {
+  margin-top: clamp(24px, 3vw, 34px);
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+}
+.presentasjon-brødtekst {
+  max-width: 50ch;
+  margin-top: 10px;
   color: var(--blekk-dempet);
 }
-.presentasjon-handling { margin-top: clamp(22px, 2.6vw, 28px); }
+
+/* Høyre kolonne: bildet, og invitasjonen med kontaktknappen under det */
+.presentasjon-hoyre {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vw, 28px);
+}
+.presentasjon-cta { border-top: 1px solid var(--strek); padding-top: clamp(18px, 2.2vw, 24px); }
+.presentasjon-cta p {
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 1.45vw, 1.16rem);
+  line-height: 1.45;
+}
+.presentasjon-handling { margin-top: clamp(18px, 2.2vw, 24px); }
 .presentasjon-bilde { margin: 0; }
 .presentasjon-bilde img {
   width: 100%;
@@ -378,24 +395,7 @@ h1, h2, h3 {
   font-size: 13px;
   color: var(--blekk-dempet);
 }
-/* Erfaringslinja under, på tvers, skilt med en hårstrek */
-.presentasjon-erfaring {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 20px;
-  margin-top: clamp(22px, 2.8vw, 34px);
-  padding-top: clamp(16px, 2vw, 22px);
-  border-top: 1px solid var(--strek);
-  color: var(--blekk-dempet);
-}
-.presentasjon-erfaring .eyebrow { flex: none; }
-.presentasjon-erfaring span + span {
-  max-width: 76ch;
-  font-size: clamp(.98rem, 1.3vw, 1.08rem);
-  line-height: 1.45;
-}
-.presentasjon-erfaring b { color: var(--blekk); font-weight: 600; }
+
 
 /* --- artistrutenett ---------------------------------------------------- */
 .rutenett {
