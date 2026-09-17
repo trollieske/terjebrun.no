@@ -213,16 +213,15 @@ Husk å endre `NETTSTED` i `scripts/build.mjs` hvis domenet blir et annet.
 
 **Fra teksten han sendte inn (linjene er lagt inn slik):**
 
-- Alle fem linjene står i **ett område** — bokeh-båndet øverst på forsiden
-  (`.topp`). Rekkefølgen er hans egen: logo, «Utvalgte musikere» som overlinje,
-  overskriften «Sterke konserter. Pålitelig samarbeid.» (hvit + aksentfarge),
-  posisjoneringen, invitasjonen og «Ta kontakt». Bildet av ham og Pat Metheny
-  står ved siden av, og erfaringslinja «Internasjonal erfaring / Stort
-  nettverk» ligger på tvers under en hårstrek.
-- Båndet er 738 px høyt på desktop og 840 px på mobil, så artistene begynner på
-  810 px (desktop) og 912 px (mobil). Skal artistene høyere opp, må noe av
-  teksten vike — for eksempel kan invitasjonen og knappen flyttes ned til
-  kontakten (sparer ~90 px).
+- **Bokeh-båndet øverst har bare logoen** (og bokeh-bildet). Ingen tekst der.
+- All tekst han sendte inn står i **feltet under båndet** (`#presentasjon`):
+  «Utvalgte musikere» som overlinje, overskriften «Sterke konserter.» +
+  «Pålitelig samarbeid.» (siste del i aksentfargen, altså hvit + aksent i mørkt
+  tema), posisjoneringen, invitasjonen og «Ta kontakt». Bildet av ham og Pat
+  Metheny står i høyre kolonne, og erfaringslinja «Internasjonal erfaring /
+  Stort nettverk» ligger på tvers under en hårstrek.
+- Båndet er 237 px, feltet 585 px, og artistene begynner på 894 px på desktop
+  (1001 px på mobil). Skal artistene høyere opp, må noe av teksten vike.
 - **Bildeteksten** under bildet sier «Terje Brun-Pedersen og Pat Metheny»,
   altså hans egen rekkefølge. På bildet står Pat Metheny til venstre. Skal
   teksten følge bildet i stedet?
