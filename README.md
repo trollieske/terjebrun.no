@@ -213,11 +213,12 @@ Husk å endre `NETTSTED` i `scripts/build.mjs` hvis domenet blir et annet.
 
 **Fra teksten han sendte inn (linjene er lagt inn slik):**
 
-- Linje 1 («Utvalgte musikere. Sterke konserter. Pålitelig samarbeid.») står i
-  båndet øverst, som sidens `h1`. Linje 2 står som ledetekst under «Artister»,
-  linje 3 som invitasjon i kontakten, og linje 4–5 som egen seksjon
-  («Internasjonal erfaring / Stort nettverk») med bildet av ham og Pat Metheny.
-  Er han enig i den fordelingen, eller vil han ha hele teksten samlet øverst?
+- Alle fem linjene står i **ett område** (`#presentasjon`) mellom logo-båndet og
+  artistene: linje 1 som `h1`, linje 2 som ledetekst, linje 3 som invitasjon
+  med «Ta kontakt»-knappen, og linje 4–5 som en erfaringslinje under en
+  hårstrek, med bildet av ham og Pat Metheny ved siden av.
+- Området er 556 px høyt på desktop og 756 px på mobil, så artistene begynner
+  på 865 px (desktop). Skal artistene enda høyere opp, må noe av teksten vike.
 - **Bildeteksten** under bildet sier «Terje Brun-Pedersen og Pat Metheny»,
   altså hans egen rekkefølge. På bildet står Pat Metheny til venstre. Skal
   teksten følge bildet i stedet?
