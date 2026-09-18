@@ -136,7 +136,7 @@ uleselig. Navnet settes i stedet som tekst ved siden av merket, med samme skrift
 som resten av siden:
 
 - `MERKE_NAVN` = **TBP Music Management** (16–17 px, halvfet)
-- `MERKE_UNDER` = Terje Brun-Pedersen · Drammen (10 px, sperret, aksentfarge)
+- `MERKE_UNDER` = Terje Brun-Pedersen (10 px, sperret, aksentfarge)
 
 Vil han heller bruke «TBP Kultur», endrer vi `MERKE_NAVN` i `scripts/build.mjs`.
 

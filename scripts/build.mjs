@@ -38,7 +38,7 @@ const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const MERKE_NAVN = 'TBP Music Management';
-const MERKE_UNDER = 'Terje Brun-Pedersen · Drammen';
+const MERKE_UNDER = 'Terje Brun-Pedersen';
 
 /* ---------------------------------------------------------------- deler */
 
