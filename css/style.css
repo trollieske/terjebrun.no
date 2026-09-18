@@ -359,33 +359,21 @@ h1, h2, h3 {
   font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.45;
 }
-.presentasjon-nettverk {
-  /* God luft over, tett under — så «Stort nettverk» leses som nytt avsnitt */
-  margin-top: clamp(32px, 3.8vw, 48px);
-  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
-}
-.presentasjon-brødtekst {
-  max-width: 50ch;
-  margin-top: 12px;
-  color: var(--blekk-dempet);
-}
-
-/* Høyre kolonne: bildet, og invitasjonen med kontaktknappen under det */
+/* Høyre kolonne: «Stort nettverk» og erfaringen over bildet — ingen tekst
+   eller filter oppå motivet. Bildet står rent under, med god luft over. */
 .presentasjon-hoyre {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3vw, 38px);
+  gap: clamp(24px, 3vw, 40px);
 }
-.presentasjon-cta {
-  border-top: 1px solid var(--strek);
-  padding-top: clamp(20px, 2.6vw, 30px);
+.presentasjon-nettverk {
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
 }
-.presentasjon-cta p {
+.presentasjon-brødtekst {
   max-width: 46ch;
-  font-size: clamp(1.02rem, 1.45vw, 1.16rem);
-  line-height: 1.45;
+  margin-top: 10px;
+  color: var(--blekk-dempet);
 }
-.presentasjon-handling { margin-top: clamp(18px, 2.2vw, 24px); }
 .presentasjon-bilde { margin: 0; }
 .presentasjon-bilde img {
   width: 100%;
@@ -393,12 +381,34 @@ h1, h2, h3 {
   border-radius: var(--radius);
   background: var(--papir-2);
 }
-.presentasjon-bilde figcaption {
+.presentasjon-bildetekst {
   margin-top: 10px;
   font-size: 13px;
   color: var(--blekk-dempet);
 }
 
+/* Invitasjonen rett under: hårstrek og luft binder introduksjonen sammen med
+   artistoversikten. Knappen står til høyre på store skjermer og under teksten
+   på smale. */
+.presentasjon-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 2.4vw, 32px);
+  margin-top: clamp(34px, 4.6vw, 58px);
+  padding-top: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--strek);
+}
+.presentasjon-cta-tekst {
+  max-width: 46ch;
+  font-size: clamp(1.08rem, 1.9vw, 1.42rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -.02em;
+}
+.presentasjon-handling { flex: none; }
+.presentasjon-handling .knapp { min-height: 44px; padding-block: 12px; }
 
 /* --- artistrutenett ---------------------------------------------------- */
 .rutenett {
@@ -668,7 +678,6 @@ a.kontakt-rad:hover .kontakt-verdi { color: #e8b48d; }
 /* --- større skjermer --------------------------------------------------- */
 @media (min-width: 700px) {
   .rutenett { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .presentasjon-inn { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); align-items: center; }
   .galleri { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .om { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
   .artist { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
@@ -676,6 +685,9 @@ a.kontakt-rad:hover .kontakt-verdi { color: #e8b48d; }
   .artist-foto, .prod-side-bilde { position: sticky; top: calc(var(--hode) + 24px); }
 }
 @media (min-width: 1024px) {
+  /* To kolonner først her: på nettbrett gir én kolonne større og mer
+     lesbart bilde, og teksten får lengre linjer. */
+  .presentasjon-inn { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); align-items: center; }
   .rutenett { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .galleri { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .galleri-stor { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -706,6 +718,12 @@ a.kontakt-rad:hover .kontakt-verdi { color: #e8b48d; }
   .kontakt-rad { flex-direction: column; align-items: flex-start; }
   .artist-nav { grid-template-columns: minmax(0, 1fr); }
   .seksjon-topp { margin-bottom: 22px; }
+}
+@media (max-width: 374px) {
+  /* Under 375 px rekker ikke merket og temabryteren siden ved siden av
+     hverandre med begge merkebeskrivelsene — den sekundære linja viker. */
+  .merke-rolle { display: none; }
+  .merke-navn { font-size: 14px; }
 }
 @media (max-width: 400px) {
   .bunnav a { font-size: 10px; }
